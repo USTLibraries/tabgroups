@@ -1,0 +1,213 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*  ============================================================================================
+    ********************************************************************************************
+    TAB GROUPS
+    ********************************************************************************************
+	
+	Chad Leigh Kluck - 12/16/2015
+	version: 2016.02.23
+	https://chadkluck.net/dev/tab-groups     - Home Site
+	https://github.com/chadkluck/tab-groups  - Repository
+	
+	Released under Creative Commons Attribution 4.0 International license (CC BY)
+	https://creativecommons.org/licenses/by/4.0/
+	
+	The code, with it's heavy use of comments, is provided as an educational resource
+	minifying is OK and, in fact, strongly encouraged even if it removes attribution comments
+	
+    ********************************************************************************************
+*/	
+
+/*  ********************************************************************************************
+    CUSTOM STYLING
+    ********************************************************************************************
+	Customize the colors used for the tabs, text, and content background
+*/
+
+/* Tab, Dropdown, and accordion selector styling when selected, or hovered over*/
+div.tab-group > ul > li.selected > a, 
+div.tab-group > ul > li > a:hover,
+div.tab-group.tab-to-accordion.compact > h2.selected > a,
+div.tab-group.tab-to-accordion.compact > h2:hover > a {
+	background-color: #510C76;
+	color: #FFF;
+	text-decoration: underline;
+	border-color: #510C76;
+}
+
+/* Tab, Dropdown, and accordion selector styling */
+div.tab-group > ul > li > a,
+div.tab-group.tab-to-accordion.compact > h2 > a,
+div.tab-group.tab-to-dropdown.compact > span.tab-menu > a {
+	background-color: #9E28B5;
+	color: #FFF;
+	border-color: #410A5E;
+}
+
+/* Content Containers */
+div.tab-group > div {
+	background-color: #FDFDFD;
+	/*color: #510C76;*/
+	border-color: #CCCBCB;
+}
+
+/*  ********************************************************************************************
+    FUNCTIONAL CSS
+    ********************************************************************************************
+	Makes the tabs functional when hiding, showing, and transforming responsively.
+	Little customization available below
+*/
+
+div.tab-group, div.tab-group > ul, div.tab-group > ul > li, div.tab-group > div, div.tab-group > h2, div.tab-group > span.tab-menu, div.tab-group > span.tab-menu > a {
+	 box-sizing: border-box;
+}
+
+/* "[div-parent] > [div-child]. Since div containers can contain other divs, we only want to mark the immediate children of a div.tab-group */	
+div.tab-group {
+	margin-bottom: 40px;
+}
+
+/* Content Containers */
+div.tab-group > div { 	
+	border-style: solid;
+	border-width: 1px;
+	padding: 10px 10px 10px 10px;
+	margin-top: 0px;
+	
+	/* Transitions */
+	display: block;
+}
+
+div.tab-group > div.hidden {
+	
+	/* Transitions */
+	display: none;
+}
+
+div.tab-group > ul {
+     padding-left: 0px;	
+	 width: 100%;
+	 margin-bottom: 0px;
+	 margin-top: 0px;
+	 display:block;
+}
+
+div.tab-group > ul > li {
+	position: relative; 
+}
+
+div.tab-group > ul > li > a,
+div.tab-group.tab-to-accordion.compact > h2 > a,
+div.tab-group.tab-to-dropdown.compact > span.tab-menu > a  {
+	border-style: solid;
+	border-width: 1px;
+	text-align: left;
+	padding: 0.75rem;
+	line-height: normal;
+	margin: 0px;
+	position: relative;
+	transition: background-color 300ms ease-out 0s;
+	min-width: 3rem;
+	display: block;
+}
+
+div.tab-group > ul > li > a,
+div.tab-group.tab-to-accordion.compact > h2 > a {
+	text-decoration: none;
+}
+
+div.tab-group.tab-to-dropdown.compact > ul {
+	display: block;
+}
+
+div.tab-group.tab-to-accordion.compact > ul {
+	display: none;
+}
+
+div.tab-group.compact > ul > li {
+	display: none;
+}
+
+div.tab-group > ul > li { 
+	display: inline-block;
+}
+
+div.tab-group.tab-to-dropdown.compact > span.tab-menu > a {
+	/*menu icon*/
+	/*background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADBJREFUeNpi/P//PwM1ASMtDaTUZMahZ+Dgj5TRWCbPQBYkgfTRWB7Ny8MllgECDAD+JkJGKwccFQAAAABJRU5ErkJggg=='); */
+	/*chevron down icon*/
+	background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAsElEQVQ4T+2U0RGDIBBEwQosISVYgiVYgp1ZgunEElJCrEDcPeOEICdM9E935g2g8OZQ0TrnzJkpPu1puaDw+1KWtgQjO3/F2p8KK/ACjYzywgIG0MmIYYXCNHXAgTeoAK/tUYIBrGsesltPSHKloWyZGxGSHGl8jiLUF6Tu7QjJdkup6hPC8Dn1Xn8rIwkh8aUrLYjNzRISX6rLCDzhSdHCD7gGTxlpwUm5/4dHY8wMAG0aKiRjanIAAAAASUVORK5CYII='); 
+	background-repeat: no-repeat;
+	background-position: right 1rem center;
+	display: block;
+	width: 100%;
+}
+
+div.tab-group.compact > ul.dropdown-expanded li {
+	display: block;
+}
+
+/* accordion and Dropdown Hidden */
+/* these are kept offscreen until needed for screenreaders/accessibility */
+div.tab-group > h2 { 
+	position:absolute;
+	left:-10000px;
+	top:auto;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}
+
+div.tab-group.tabbed > span.tab-menu, div.tab-group.tab-to-accordion > span.tab-menu {
+	display: none;
+}
+
+/* accordion and Dropdown Visible */
+div.tab-group.compact.tab-to-dropdown > span.tab-menu, div.tab-group.compact.tab-to-accordion > h2 {
+	display: block;
+	position: relative;
+	left: 0;
+	top:auto;
+	width:auto;
+	height:auto;
+	overflow:hidden;
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+
+div.tab-group.tab-to-accordion.compact > h2 > a {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ9JREFUeNq81GENgCAQgFExARGMcFGMYDMiGMUKNrCB57GBoiByHJPt+yHTt2NOFSJ2LZdKgtfeQK15Qd0u+8ythlooYI1oJ4zad9tCIbVR4PbiHs/mQF2EMsAylAl61LyiFaAvRKcWYIjiiQpB2xygoxQEd2R0L0tLwBgTHDmNVYLvWAUYYkb6pYyfGAPURRhzQvjEEqD6548tWIcAAwDCTLmNG9uYiwAAAABJRU5ErkJggg=='); /*chevron right icon*/
+	background-repeat: no-repeat;
+	background-position: .9rem;
+	padding-left: 3rem;
+}
+
+div.tab-group.tab-to-accordion.compact > h2.selected > a {
+	background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAsElEQVQ4T+2U0RGDIBBEwQosISVYgiVYgp1ZgunEElJCrEDcPeOEICdM9E935g2g8OZQ0TrnzJkpPu1puaDw+1KWtgQjO3/F2p8KK/ACjYzywgIG0MmIYYXCNHXAgTeoAK/tUYIBrGsesltPSHKloWyZGxGSHGl8jiLUF6Tu7QjJdkup6hPC8Dn1Xn8rIwkh8aUrLYjNzRISX6rLCDzhSdHCD7gGTxlpwUm5/4dHY8wMAG0aKiRjanIAAAAASUVORK5CYII='); /*chevron down icon*/
+}
+
+/*  ********************************************************************************************
+    ACCESSIBILITY
+    ********************************************************************************************
+	  - http://www.learningjquery.com/2010/04/accessible-showing-and-hiding
+	  - http://webaim.org/techniques/css/invisiblecontent/
+	  - https://developer.mozilla.org/en-US/docs/Web/Accessibility/
+*/
+
+/* Screen Reader Text Only */
+.screen-reader-text, div.tab-group > h1 {
+	position:absolute;
+	left:-10000px;
+	top:auto;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}
+
+/*  ********************************************************************************************
+        END -- TAB GROUPS
+    ********************************************************************************************
+    ============================================================================================
+*/
